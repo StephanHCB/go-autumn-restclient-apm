@@ -91,3 +91,23 @@ loggermiddleware.AddCustomJsonLogField(auapmlogging.SpanIdLogFieldName, func(r *
     return auapmlogging.ExtractSpanId(r.Context())
 })
 ```
+
+## Concepts
+
+### Elastic APM
+
+This library heavily depends on the concepts imposed by Elastic APM. For a good start we recommend to read through
+the [data model](https://www.elastic.co/guide/en/apm/guide/current/data-model.html) description as well as the
+explanation of [distributed tracing](https://www.elastic.co/guide/en/apm/guide/current/apm-distributed-tracing.html) for
+the current version of the official documentation.
+
+### Example integration into go-autumn-chi service
+
+The following diagram depicts how this library integrates into the request processing of an existing go-autumn-chi
+service.
+![visualization_request_processing.svg](docs%2Fvisualization_request_processing.svg)
+
+For scheduled or other not-request-based tasks the following example shows how this library may be utilized to add
+Elastic APM tracing. 
+![visualization_scheduled_task.svg](docs%2Fvisualization_scheduled_task.svg)
+

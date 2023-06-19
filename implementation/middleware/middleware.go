@@ -3,6 +3,7 @@ package auapmmiddleware
 import (
 	"go.elastic.co/apm/module/apmhttp/v2"
 	"go.elastic.co/apm/v2"
+	"go.elastic.co/apm/v2/transport"
 	"net/http"
 )
 
@@ -24,4 +25,22 @@ func AddTraceHeadersToResponse(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	}
 	return http.HandlerFunc(fn)
+}
+
+// SetupDiscardTracer globally sets up a discard tracer that does not send any traces.
+//
+// We override the default tracer because this will affect all APM traces, even those created by
+// libraries we include, which often just use the default tracer.
+func SetupDiscardTracer() error {
+	// if apm is not configured, we use a discardTracer that does not send any traces
+	discardTracer, err := apm.NewTracerOptions(apm.TracerOptions{Transport: transport.Discard})
+	if err == nil {
+		// Set defaultTracer as is also used when starting independent transactions (see scheduler)
+		apm.SetDefaultTracer(discardTracer)
+	}
+
+	// if there was an error creating the discardTracer we stick with the defaultTracer as a crude backup.
+	// The default tracer sends its traces to localhost if it is not configured.
+
+	return err
 }

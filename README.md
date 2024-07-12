@@ -4,20 +4,6 @@ Adds Elastic APM tracing capabilities based on [elastic/apm-agent-go](https://gi
 an activated [go.elastic.co/apm/module/apmchiv5/v2](https://pkg.go.dev/go.elastic.co/apm/module/apmchiv5/v2) middleware
 to work properly.
 
-## About go-autumn
-
-A collection of libraries
-for [enterprise microservices](https://github.com/StephanHCB/go-mailer-service/blob/master/README.md) in golang that
-
-- is heavily inspired by Spring Boot / Spring Cloud
-- is very opinionated
-- names modules by what they do
-- unlike Spring Boot avoids certain types of auto-magical behaviour
-- is not a library monolith, that is every part only depends on the api parts of the other components
-  at most, and the api parts do not add any dependencies.
-
-Fall is my favourite season, so I'm calling it go-autumn.
-
 ## About go-autumn-restclient
 
 It's a rest client that also supports x-www-form-urlencoded.

@@ -4,8 +4,8 @@ go 1.21
 
 require (
 	github.com/StephanHCB/go-autumn-restclient v0.9.0
-	go.elastic.co/apm/module/apmhttp/v2 v2.6.0
-	go.elastic.co/apm/v2 v2.6.0
+	go.elastic.co/apm/module/apmhttp/v2 v2.6.2
+	go.elastic.co/apm/v2 v2.6.2
 )
 
 require (
